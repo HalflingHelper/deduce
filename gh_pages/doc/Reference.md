@@ -463,6 +463,7 @@ must be one of the following:
 * [Period](#period-proof-of-true)
 * [Question Mark](#question-mark-proof)
 * [Recall](#recall-proof)
+* [Solve](#solve-proof)
 * [Sorry](#sorry-proof)
 * [Switch](#switch-proof)
 * [Symmetric](#symmetric-proof)
@@ -1783,6 +1784,16 @@ To prove a `some` formula, see the entry for
 [Choose](#choose-proof).
 
 To use a `some` formula, see the entry for [Obtain](#obtain-exists-elimination)
+
+## Solve (Proof)
+```
+conclusion :: "solve"
+```
+
+The `solve` proof method performs polynomial normalization
+to proof the equality of terms involving addition and multiplication of
+natural numbers.
+
 
 ## Sorry (Proof)
 

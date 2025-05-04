@@ -1210,6 +1210,18 @@ def check_proof_of(proof, formula, env):
                 + str(red_formula))
       return red_formula
 
+    case Solve(loc):
+      import solver
+      # set_reduce_all(True)
+      # red_formula = formula.reduce(env)
+      # set_reduce_all(False)
+      red_formula = formula
+      norm_formula = solver.gen_sol(loc, red_formula)
+      check_proof_of(PTrue(loc), norm_formula, env)
+
+      return red_formula
+
+
     #  goal is P
     #  suffices Q by r        r proves (if Q then P)
     #  goal is Q

@@ -180,6 +180,7 @@ ident: IDENT              -> ident
     | "replace" proof_list "in" proof                    -> rewrite_fact
     | "evaluate"                                         -> eval_goal
     | "evaluate" "in" proof                              -> eval_fact
+    | "solve"                                            -> solve_goal
     | "switch" term "{" switch_pf_case_list "}"          -> switch_proof
     | "switch" term "for" ident_list "{" switch_pf_case_list "}" -> switch_proof_for
     | "equations" equation equation_list                 -> equations_proof

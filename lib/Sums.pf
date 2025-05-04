@@ -55,17 +55,16 @@ proof
             | IH.
         suffices n' * (n' - 1) + 2 * (n' + 0) = (n' + 1) * ((n' + 1) - 1)
             by expand 2*summation.
-        suffices n' * (n' - 1) + 2 * n' = suc(n') * (suc(n') - 1)
-              by replace add_one[n'] | add_zero[n'].
-        suffices (n' * n' - n') + (n' + n') = suc(n') * n' by {
-          expand operator-
-          replace sub_zero[n'] | blah[n'] | two_mult[n'].
+        switch n' {
+            case 0 {
+                evaluate
+            }
+            case suc(n'') {
+                suffices __ by evaluate
+                replace sub_zero
+                solve
+            }
         }
-        suffices ((n' * n' - n') + n') + n' = n' + n' * n' by expand operator*.
-        suffices n' * n' + n' = n' + n' * n' by 
-            replace add_commute[(n' * n' - n')][n']
-            | apply sub_add_identity[n'*n'][n'] to n_le_nn[n'].
-        add_commute[n' * n'][n']
     }
 end
 

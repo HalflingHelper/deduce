@@ -183,6 +183,7 @@ known_tokens = {
     'EQUAL': 'operator',
     'EQUATIONS': 'keyword',
     'EVALUATE': 'keyword',
+    'SOLVE': 'keyword',
     'EXPAND': 'keyword',
     'EXTENSIONALITY': 'keyword',
     'FALSE': 'prim',

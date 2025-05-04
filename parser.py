@@ -520,6 +520,8 @@ def parse_tree_to_ast(e, parent):
     elif e.data == 'eval_fact':
         subject = parse_tree_to_ast(e.children[0], e)
         return EvaluateFact(e.meta, subject)
+    elif e.data == 'solve_goal':
+        return Solve(e.meta)
     elif e.data == 'apply_defs_fact':
         definitions = parse_tree_to_list(e.children[0], e)
         subject = parse_tree_to_ast(e.children[1], e)

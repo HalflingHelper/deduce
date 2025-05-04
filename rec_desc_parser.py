@@ -859,6 +859,10 @@ def parse_proof_hi():
     else:
         return EvaluateGoal(meta_from_tokens(token, previous_token()))
     
+  elif token.type == 'SOLVE':
+    advance()
+    return Solve(meta_from_tokens(token, previous_token()))
+
   else:
     # TODO: Move closest_keyword to another place at some point, probably after parsing
     # However, we haven't done that right now because we get esoteric error messages

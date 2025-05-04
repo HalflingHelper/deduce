@@ -2757,6 +2757,18 @@ class EvaluateFact(Proof):
     self.subject.uniquify(env)
   
 @dataclass
+class Solve(Proof):
+
+  def pretty_print(self, indent):
+      return str(self)
+  
+  def __str__(self):
+    return 'solve'
+
+  def uniquify(self, env):
+    pass
+
+@dataclass
 class ApplyDefsGoal(Proof):
   definitions: List[Term]
   body: Proof
