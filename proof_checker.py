@@ -2407,7 +2407,7 @@ def validate_union_type(ty, params, env):
         union_params_len = len(type_def.type_params)
         provided_params_len = len(params)
         if union_params_len != provided_params_len:
-          error(ty.location, f"Expected union type '{ty}' in constructor parameters " \
+          error(ty.location, f"Expected union type '{ty}' " \
                + f"to have {union_params_len} parameters, not {provided_params_len}")
     case TypeInst(loc, ty, type_args):
       for t in type_args:
@@ -2652,6 +2652,7 @@ def type_check_stmt(stmt, env, error_on_next_import : dict[str, bool]):
         new_body = body # already type checked in process_declaration
         new_ty = body.typeof
       else:
+        validate_union_type(ty, [], env)
         new_body = type_check_term(body, ty, env, None, [])
         new_ty = ty
       return Define(loc, name, new_ty, new_body, visibility=stmt.visibility)
@@ -2676,6 +2677,11 @@ def type_check_stmt(stmt, env, error_on_next_import : dict[str, bool]):
                                 stmt.visibility)
       cases_present = {}
       body_env = env.declare_type_vars(loc, typarams)
+
+      for p in params:
+        validate_union_type(p, [], body_env)
+      validate_union_type(returns, [], body_env)
+
       reset_recursive_call_count()
       new_cases = [type_check_fun_case(c, name, params, returns, body_env,
                                        cases_present) \
